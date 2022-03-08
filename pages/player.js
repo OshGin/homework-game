@@ -26,7 +26,12 @@ export default function Home() {
         <button className={styles.button}>
           <Link href="/playeroverview">Go find the overview</Link>
         </button>
-        <button className={styles.button}>Logg out!</button>
+        <button className={styles.button}>
+          <Link href="/creattask">Creat a new task!</Link>
+        </button>
+        <button className={styles.button}>
+          <Link href="./">Logg Out!</Link>
+        </button>
       </main>
     </div>
   );

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 export default function Home() {
   return (
@@ -13,6 +14,9 @@ export default function Home() {
         <h1 className={styles.title}>Player Overview</h1>
 
         <div>This page needs to be dynamic</div>
+        <button className={styles.button}>
+          <Link href="/player">what is up for you?</Link>
+        </button>
       </main>
     </div>
   );
