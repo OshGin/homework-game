@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,6 +15,9 @@ export default function Home() {
         <h1 className={styles.title}>Sign Up</h1>
 
         <div>under construction</div>
+        <button className={styles.button}>
+          <Link href="/player">what is up for you?</Link>
+        </button>
       </main>
     </div>
   );
