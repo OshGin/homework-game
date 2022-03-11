@@ -1,7 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
-export default function Home() {
+export default function CreatList() {
+  const [todo, setTodo] = useState([]);
+  function handleToddo() {
+    setTodo(todo);
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -12,8 +17,16 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Creat Task</h1>
-
-        <div>This page needs to be dynamic</div>
+        <div>
+          <input
+            className={styles.input}
+            id="To-Do"
+            placeholder="what do you want to do this week?"
+          />
+        </div>
+        <button onClick={() => handleToddo()} className={styles.button}>
+          add task
+        </button>
         <button className={styles.button}>
           <Link href="/player">Find your tasks</Link>
         </button>

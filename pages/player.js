@@ -1,7 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 export default function Home() {
+  const [test, setTest] = useState(false);
+  function testToggle() {
+    const newTest = !test;
+    setTest(newTest);
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -22,7 +28,9 @@ export default function Home() {
           <li>Be nice to mam</li>
           <li>...</li>
         </ul>
-        <button className={styles.button}>Great you finished it!</button>
+        <button className={styles.button} onClick={() => testToggle()}>
+          Test : {!test ? 'Great you finished it!' : 'Keep trying'}
+        </button>
         <button className={styles.button}>
           <Link href="/playeroverview">Go find the overview</Link>
         </button>
