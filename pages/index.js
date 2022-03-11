@@ -14,8 +14,8 @@ export default function Home() {
         <h1 className={styles.title}>Welcome</h1>
 
         <div className={styles.description}>
-          Welcom to the place where homework starts to be fun. Pleas sign up and
-          creat you own houshold game. After signing up and creating your
+          Welcom to the place where homework starts to be funnier. Please sign
+          up and creat you own houshold game. After signing up and creating your
           digital household. Please invite all of your household members and
           start to gamify your housework.
         </div>

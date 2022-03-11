@@ -14,7 +14,7 @@ export default function Home() {
         <h1 className={styles.title}>Player Overview</h1>
 
         <div>This page needs to be dynamic</div>
-        <img src="/medium.png" alt="medium happy" />
+        <img src="/medium.png" alt="medium happy" width="300" height="350" />
         <button className={styles.button}>
           <Link href="/player">what is up for you?</Link>
         </button>
