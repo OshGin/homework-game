@@ -2,6 +2,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
+import { config } from 'dotenv-safe';
+
+config();
+
 export default function CreatList() {
   const [todo, setTodo] = useState([]);
   function handleToddo() {
