@@ -22,7 +22,7 @@ export default function CreatList() {
           <input
             className={styles.input}
             id="To-Do"
-            placeholder="what do you want to do this week?"
+            placeholder="what do you want to do?"
           />
         </div>
         <button onClick={() => handleToddo()} className={styles.button}>
