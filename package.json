@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "camelcase-keys": "^7.0.2",
     "dotenv-safe": "^8.2.0",
     "next": "12.1.0",
     "postgres": "^1.0.2",
