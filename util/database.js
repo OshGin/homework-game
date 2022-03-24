@@ -31,3 +31,32 @@ export async function getTasks() {
 SELECT * FROM tasks`;
   return tasks.map((task) => camelcaseKeys(task));
 }
+
+export async function creatTask(name: string, points: number) {
+  const task = await sql`
+INSERT INTO tasks
+  (name, points)
+VALUES
+ (${name},${points})`;
+  return task.map((newTask) => camelcaseKeys(newTask));
+}
+
+export async function updateTaskById(name: string, points: number) {
+  const task = await sql`
+  UPDATE
+    tasks
+  SET
+    name = ${name},
+    points = ${points}
+  `;
+  return task && camelcaseKeys(task);
+}
+
+export async function deleteTaskById(id: number) {
+  const task = await sql`
+  DELETE FROM
+    tasks
+  WHERE
+    id = ${id}`;
+  return task && camelcaseKeys(task);
+}
