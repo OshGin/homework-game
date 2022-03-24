@@ -32,7 +32,7 @@ SELECT * FROM tasks`;
   return tasks.map((task) => camelcaseKeys(task));
 }
 
-export async function creatTask(name: string, points: number) {
+export async function creatTask(name, points) {
   const task = await sql`
 INSERT INTO tasks
   (name, points)
@@ -41,7 +41,7 @@ VALUES
   return task.map((newTask) => camelcaseKeys(newTask));
 }
 
-export async function updateTaskById(name: string, points: number) {
+export async function updateTaskById(name, points) {
   const task = await sql`
   UPDATE
     tasks
@@ -52,7 +52,7 @@ export async function updateTaskById(name: string, points: number) {
   return task && camelcaseKeys(task);
 }
 
-export async function deleteTaskById(id: number) {
+export async function deleteTaskById(id) {
   const task = await sql`
   DELETE FROM
     tasks
