@@ -1,5 +1,5 @@
-//import { request } from 'http';
-//import { NextApiRequest, NextApiResponse } from 'next';
+// import { request } from 'http';
+// import { NextApiRequest, NextApiResponse } from 'next';
 import {
   getTasks,
   creatTask,
@@ -8,12 +8,12 @@ import {
 } from '../../util/database';
 
 export default async function handler(req, res) {
-  //all tasks
+  // all tasks
   if (req.method === 'GET') {
     const tasks = getTasks();
     res.status(200).json(tasks);
   }
-  //new task
+  // new task
   if (req.method === 'POST') {
     const taskFromRequest = req.body;
     const newTask = await creatTask(
@@ -22,12 +22,12 @@ export default async function handler(req, res) {
     );
     res.status(200).json(newTask);
   }
-  //update task
+  // update task
   if (req.method === 'PUT') {
     const updatetasks = updateTaskById();
     res.status(200).json(updatetasks);
   }
-  //delete task
+  // delete task
   if (req.method === 'DELETE');
   {
     const deletedTask = await deleteTaskById();

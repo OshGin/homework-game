@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
+import { handler } from './api/tasks';
 
 export default function CreatList() {
   const [todo, setTodo] = useState([]);

@@ -29,7 +29,7 @@ const sql = connectOneTimeToDatabase;
 export async function getTasks() {
   const tasks = await sql`
 SELECT * FROM tasks`;
-  return tasks.map((task) => camelcaseKeys(task));
+  return tasks && camelcaseKeys(tasks);
 }
 
 export async function creatTask(name, points) {
@@ -38,7 +38,7 @@ INSERT INTO tasks
   (name, points)
 VALUES
  (${name},${points})`;
-  return task.map((newTask) => camelcaseKeys(newTask));
+  return task && camelcaseKeys(task);
 }
 
 export async function updateTaskById(name, points) {
