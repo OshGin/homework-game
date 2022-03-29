@@ -1,5 +1,5 @@
-import { request } from 'http';
-import { NextApiRequest, NextApiResponse } from 'next';
+//import { request } from 'http';
+//import { NextApiRequest, NextApiResponse } from 'next';
 import {
   getTasks,
   creatTask,
@@ -7,28 +7,30 @@ import {
   deleteTaskById,
 } from '../../util/database';
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   //all tasks
-  if (request.method === 'GET') {
+  if (req.method === 'GET') {
     const tasks = getTasks();
     res.status(200).json(tasks);
-    //new task
-  } else if (request.method === 'POST') {
-    let taskFromRequest = request.body;
+  }
+  //new task
+  if (req.method === 'POST') {
+    const taskFromRequest = req.body;
     const newTask = await creatTask(
-      (taskFromRequest = request.name),
-      (taskFromRequest = request.points),
+      taskFromRequest.name,
+      taskFromRequest.points,
     );
     res.status(200).json(newTask);
-    //update task
-  } else if (request.method === 'UPDATE') {
-    const tasks = updateTaskById();
-    res.status(200).json(tasks);
+  }
+  //update task
+  if (req.method === 'PUT') {
+    const updatetasks = updateTaskById();
+    res.status(200).json(updatetasks);
   }
   //delete task
-  if (request.method === 'DELETE');
+  if (req.method === 'DELETE');
   {
-    const deletedTask = await deleteTaskById(taskId);
+    const deletedTask = await deleteTaskById();
     res.status(200).json(deletedTask);
   }
   res.status(405).json({ error: 'Method not Allowed' });
