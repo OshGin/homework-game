@@ -6,7 +6,7 @@ import { deleteTaskById } from '../util/database';
 export default function Home() {
   const [tasks, setTasks] = useState(['']);
 
-  async function deleteTask(id) {
+  async function deleteTask(id: number) {
     const deleteResponse = await fetch(`/api/tasks/${id}`, {
       method: 'DELETE',
     });
