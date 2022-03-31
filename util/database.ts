@@ -3,7 +3,10 @@ import postgres from 'postgres';
 import camelcaseKeys from 'camelcase-keys';
 
 config();
-
+// Type needed for the connection function below
+declare module globalThis {
+  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
+}
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
@@ -27,14 +30,16 @@ function connectOneTimeToDatabase() {
 const sql = connectOneTimeToDatabase;
 
 export type Task = {
+  id: number;
   name: string;
   points: number;
 };
 
 export async function getTasks() {
   const tasks = await sql<Task[]>`
-SELECT * FROM tasks`;
-  return tasks && camelcaseKeys(tasks);
+SELECT * FROM tasks;
+`;
+  return tasks.map((task) => camelcaseKeys(task));
 }
 
 export async function creatTask(name: string, points: number) {
@@ -43,7 +48,7 @@ INSERT INTO tasks
   (name, points)
 VALUES
  (${name},${points})`;
-  return task && camelcaseKeys(task);
+  return camelcaseKeys(task);
 }
 
 export async function updateTaskById(name: string, points: number) {

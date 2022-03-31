@@ -5,7 +5,7 @@ import { Task } from '../util/database';
 
 export default function Test() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [task, setTask] = useState('');
+  const [task, setTask] = useState<Task>();
   const [name, setName] = useState('');
   const [points, setPoints] = useState(Number);
 
