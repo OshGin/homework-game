@@ -26,14 +26,19 @@ function connectOneTimeToDatabase() {
 
 const sql = connectOneTimeToDatabase;
 
+export type Task = {
+  name: string;
+  points: number;
+};
+
 export async function getTasks() {
-  const tasks = await sql`
+  const tasks = await sql<Task[]>`
 SELECT * FROM tasks`;
   return tasks && camelcaseKeys(tasks);
 }
 
-export async function creatTask(name, points) {
-  const task = await sql`
+export async function creatTask(name: string, points: number) {
+  const task = await sql<[Task]>`
 INSERT INTO tasks
   (name, points)
 VALUES
@@ -41,8 +46,8 @@ VALUES
   return task && camelcaseKeys(task);
 }
 
-export async function updateTaskById(name, points) {
-  const task = await sql`
+export async function updateTaskById(name: string, points: number) {
+  const task = await sql<[Task | undefined]>`
   UPDATE
     tasks
   SET
@@ -52,8 +57,8 @@ export async function updateTaskById(name, points) {
   return task && camelcaseKeys(task);
 }
 
-export async function deleteTaskById(id) {
-  const task = await sql`
+export async function deleteTaskById(id = Number) {
+  const task = await sql<[Task | undefined]>`
   DELETE FROM
     tasks
   WHERE
