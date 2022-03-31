@@ -1,3 +1,11 @@
+# ABOUT THIS APP
+
+In this project I wanted to gameify houwork for familys and shared household like students usally have. Nobody likes it but in the end we all have to live in the same appartment or house, so why not compet against eachother.
+
+Techniqually I used JaveScript and TypeScript and it is all written in next.js. For the backend there is a postgresQL database where all the informations are stored.
+
+Have fun and clean your room!
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
