@@ -1,6 +1,7 @@
 import { request } from 'http';
 import { NextApiRequest, NextApiResponse } from 'next';
 import {
+  Task,
   getTasks,
   creatTask,
   updateTaskById,
@@ -14,13 +15,18 @@ type TaskRequestBody = {
 type TaskNextApiRequest = NextApiRequest & {
   body: TaskRequestBody;
 };
-export default async function handler(request: TaskNextApiRequest, response: NextApiResponse<TaskNextApiRequest>,
-  )
+export type TasksResponseBodyGet = {
+  tasks: Task[];
+};
+export type TaskResponseBody = { error: string } | { task: Task };
 
-
+export default async function handler(
+  request: TaskNextApiRequest,
+  response: NextApiResponse<TaskNextApiRequest>,
+) {
   // all tasks
   if (request.method === 'GET') {
-    const tasks = getTasks();
+    const tasks = await getTasks();
     response.status(200).json(tasks);
   }
   // new task
