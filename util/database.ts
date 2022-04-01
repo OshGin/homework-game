@@ -37,8 +37,8 @@ export type Task = {
 
 export async function getTasks() {
   const tasks = await sql<Task[]>`
-SELECT * FROM tasks;
-`;
+    SELECT * FROM animals;
+  `;
   return tasks.map((task) => camelcaseKeys(task));
 }
 

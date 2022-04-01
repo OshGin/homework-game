@@ -6,7 +6,6 @@ import { TasksResponseBodyGet, TaskResponseBody } from './api/tasks';
 
 export default function Test() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [task, setTask] = useState<Task>();
   const [name, setName] = useState('');
   const [points, setPoints] = useState<number>();
   const [idEditTaskId, setOnEditTaskId] = useState<number>();
@@ -15,7 +14,7 @@ export default function Test() {
   const [error, setError] = useState('');
   // DELET
   async function deleteTask(id: number) {
-    const deleteResponse = await fetch(`/api/tasks`, {
+    const deleteResponse = await fetch(`/api/tasks/${id}`, {
       method: 'DELETE',
     });
     const deleteResponseBody =
@@ -68,7 +67,7 @@ export default function Test() {
       console.log('I need more data to update');
       return;
     }
-    const putResponse = await fetch(`/api/tasks`, {
+    const putResponse = await fetch(`/api/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -106,6 +105,20 @@ export default function Test() {
 
     getTasks().catch(() => {});
   }, []);
+  // ERROR
+  if (error) {
+    return (
+      <div>
+        <Head>
+          <title>Error</title>
+          <meta name="description" content="This is the frontend of my api" />
+        </Head>
+
+        <h1>Error</h1>
+        {error}
+      </div>
+    );
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -158,6 +171,7 @@ export default function Test() {
               />
               <button
                 onClick={() => {
+                  setOnEditTaskId(task.id);
                   setTaskOnEdit(task.name);
                   setPointsOnEdit(task.points);
                 }}
