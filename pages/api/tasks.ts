@@ -43,8 +43,7 @@ export default async function handler(
     response.status(200).json(updatetasks);
   }
   // delete task
-  if (request.method === 'DELETE');
-  {
+  if (request.method === 'DELETE') {
     const deletedTask = await deleteTaskById();
     response.status(200).json(deletedTask);
   }

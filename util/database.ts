@@ -39,7 +39,7 @@ export async function getTasks() {
   const tasks = await sql<Task[]>`
     SELECT * FROM animals;
   `;
-  return tasks.map((task) => camelcaseKeys(task));
+  return tasks.map((task = [{}]) => camelcaseKeys(task));
 }
 
 export async function creatTask(name: string, points: number) {
@@ -47,7 +47,9 @@ export async function creatTask(name: string, points: number) {
 INSERT INTO tasks
   (name, points)
 VALUES
- (${name},${points})`;
+ (${name},${points})
+RETURNING *
+ `;
   return camelcaseKeys(task);
 }
 
@@ -58,6 +60,7 @@ export async function updateTaskById(name: string, points: number) {
   SET
     name = ${name},
     points = ${points}
+  RETURNING *
   `;
   return task && camelcaseKeys(task);
 }
@@ -67,6 +70,7 @@ export async function deleteTaskById(id = Number) {
   DELETE FROM
     tasks
   WHERE
-    id = ${id}`;
+    id = ${id}
+  RETURNING *`;
   return task && camelcaseKeys(task);
 }
